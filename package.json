@@ -1,0 +1,50 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "dev": "electron .",
+    "start": "electron .",
+    "test": "electron-builder",
+    "build": "rm -rf dist/&&electron-builder"
+  },
+  "build": {
+    "productName": "test",
+    "appId": "com.wh.whkx",
+    "copyright":"wh",
+    "directories": {
+      "output": "dist"
+    }, 
+    "win": {  
+      "icon": "static/test.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "files": [
+      "main.js",
+      "preload.js"
+    ]
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^17.0.1",
+    "electron-builder": "^22.14.13"
+  },
+  "dependencies": {
+  }
+}

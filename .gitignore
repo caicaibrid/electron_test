@@ -40,3 +40,6 @@ screenshot
 
 build
 node_modules_
+node_modules
+dist/
+.idea/
