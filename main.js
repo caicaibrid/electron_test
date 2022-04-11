@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron')
 const path = require('path')
 
 let mainWindow
@@ -16,6 +16,7 @@ function createWindow() {
         minimizable: false,
         maximizable: false,
         resizable: false,
+        frame: false,
         webPreferences: {
             preload: path.join(__dirname, '/preload.js'),
             sandbox: true,
@@ -25,20 +26,30 @@ function createWindow() {
             nativeWindowOpen: true, //是否使用原生的window.open()
         }
     })
-    mainWindow.loadURL('http://www.baidu.com')
+    mainWindow.loadURL('http://192.168.129.106:8000')
     mainWindow.on('closed', function () {
         mainWindow = null
     })
     if (!app.isPackaged){
+        
+    }
+    globalShortcut.register('CommandOrControl+Y', () => {
         mainWindow.webContents.openDevTools()
         mainWindow.setClosable(true)
-    }
+        mainWindow.setAlwaysOnTop(false)
+        mainWindow.setSkipTaskbar(false)
+        // Do stuff when Y and either Command/Control is pressed.
+      })
 }
 
 // 创建监听
 ipcMain.on('changeSize', (e, { width= 800, height= 600 }) => {
     mainWindow.setSize(width, height);
     mainWindow.center();
+});
+
+ipcMain.on('closeApp', (e) => {
+    mainWindow.destroy()
 });
 
 ipcMain.on('getParams', (e) => {
