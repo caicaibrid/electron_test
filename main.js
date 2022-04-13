@@ -5,10 +5,10 @@ let mainWindow
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        icon: path.join(__dirname, '/static/close.png'),
+        icon: path.join(__dirname, '/static/test.png'),
         skipTaskbar: true,
-        width: 800,
-        height: 600,
+        width: 0,
+        height: 0,
         center: true,
         autoHideMenuBar: true,
         alwaysOnTop: true,
@@ -26,7 +26,7 @@ function createWindow() {
             nativeWindowOpen: true, //是否使用原生的window.open()
         }
     })
-    mainWindow.loadURL('http://192.168.129.106:8000')
+    mainWindow.loadURL(' http://192.168.129.106:8000')
     mainWindow.on('closed', function () {
         mainWindow = null
     })
