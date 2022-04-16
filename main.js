@@ -17,6 +17,8 @@ function createWindow() {
         maximizable: false,
         resizable: false,
         frame: false,
+        transparent: true,
+        backgroundColor: '#00000000',
         webPreferences: {
             preload: path.join(__dirname, '/preload.js'),
             sandbox: true,
@@ -26,7 +28,7 @@ function createWindow() {
             nativeWindowOpen: true, //是否使用原生的window.open()
         }
     })
-    mainWindow.loadURL(' http://192.168.129.106:8000')
+    mainWindow.loadURL('http://192.168.129.106:8000')
     mainWindow.on('closed', function () {
         mainWindow = null
     })
